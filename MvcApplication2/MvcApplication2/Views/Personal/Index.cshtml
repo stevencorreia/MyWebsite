@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title></title>
+
+    <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500,300,700,400" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="appController">
+    <div ng-controller="MainController">
+        <div class="alert alert-info" ng-show="loading"> Loading....</div>
+        <form novalidate name="f1" ng-submit="SaveFile()">
+            <div style="color: red">{{Message}}</div>
+            <table>
+                <tr>
+                    <td>Select Image : </td>
+                    <td>
+                        <input type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" required />
+                        <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.file.$error.required">Image required!</span>
+                        <span class="error">{{FileInvalidMessage}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name : </td>
+                    <td>
+                        <input type="text" name="uFileDescription" ng-model="FileDescription" class="{{(IsFormSubmitted?'ng-dirty' + (f1.uFileDescription.$invalid?' ng-invalid':''):'')}}" autofocus />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Upload File" />
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+        <div class="container">
+            <h1>{{ title }}</h1>
+            <div ng-repeat="image in images" class="col-md-6">
+                <div class="thumbnail">
+                    <img ng-src="{{ image.cover }}">
+                    <p class="delete" ng-click="delete($index,image.cover)">&#9003;</p>
+                    <p class="title">{{ image.imageName }}</p>
+                    @*<p class="price">{{ image.imageID}}</p>*@
+                    <p class="date">{{ image.createdDate | date }}</p>
+                    <div class="rating">
+                        <p class="likes" ng-click="plusOne($index)"> &#128077 {{ image.likes }} </p>
+                        <p class="dislikes" ng-click="minusOne($index)"> &#128078; {{ image.dislikes }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @*<div class="footer">
+            <div class="container">
+                <h2>Available for iPhone and Android.</h2>
+                <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
+                <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+            </div>
+        </div>*@
+
+
+    <!-- Modules -->
+    <script src="~/js/app.js"></script>
+    <!-- Controllers -->
+    <script src="~/js/controller/MainController.js"></script>
+</body>
+</html>

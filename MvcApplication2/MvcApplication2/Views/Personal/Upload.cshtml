@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+<script src="~/Scripts/angular.js"></script>
+
+
+<div ng-controller="UploadController">
+    <form novalidate name="f1" ng-submit="SaveFile()">
+        <div style="color: red">{{Message}}</div>
+        <table>
+            <tr>
+                <td>Select File : </td>
+                <td>
+                    <input type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" required />
+                    <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.file.$error.required">Image required!</span>
+                    <span class="error">{{FileInvalidMessage}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Description : </td>
+                <td>
+                    <input type="text" name="uFileDescription" ng-model="FileDescription" class="{{(IsFormSubmitted?'ng-dirty' + (f1.uFileDescription.$invalid?' ng-invalid':''):'')}}" autofocus />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Upload File" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/controller/UploadController.js"></script>
+}

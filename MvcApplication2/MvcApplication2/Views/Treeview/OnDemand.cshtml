@@ -1,0 +1,37 @@
+﻿@model List<MvcApplication2.SiteMenu>
+
+@{
+    ViewBag.Title = "OnDemand";
+}
+
+<h2>My Family Tree</h2>
+<div style="border: 1px solid black; padding:0px; background-color: #FAFAFA">
+    @{
+        <div class="treeview">
+            @{
+                if (Model != null && Model.Any())
+                {
+                    <ul>
+                        @foreach (var i in Model)
+                        {
+                            <li>
+                                <span class="collapse collapsible" data-loaded="false" pid="@i.MenuID">&nbsp;</span>
+                                @* Here I have added the above span for collapsible button for treeview *@
+                                @* and data-loaded="false" means its sub menu not loaded yet from database *@
+                                <span>
+                                    @*<a href="@i.NavURL">@i.MenuName</a>*@
+                                    @i.MenuName
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                }
+            }
+        </div>
+    }
+
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/MyTreeview.js"></script>
+}

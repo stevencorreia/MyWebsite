@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "ConsumeJSONInAngularJSWithASPNETWebAPI",
+            "location": "East US"
+        },
+        "databases": [
+            {
+                "connectionStringName": "DefaultConnection",
+                "databaseName": "ConsumeJSONInAngularJSWithASPNETWebAPI_db",
+                "serverName": "gme6gt7bze",
+                "user": "stevencorreia",
+                "password": "",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "East US"
+            }
+        ]
+    }
+}
